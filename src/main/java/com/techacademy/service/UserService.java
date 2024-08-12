@@ -19,6 +19,9 @@ public class UserService {
     public List<User> getUserList() {
         return userRepository.findAll();
     }
+    public User getUser(Integer id) {
+        return userRepository.findById(id).get();
+    }
 
     @Transactional
     public User saveUser(User user) {
