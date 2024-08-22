@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import com.techacademy.entity.User;
 import com.techacademy.service.UserService;
 
@@ -46,22 +45,20 @@ public class UserController {
         return "redirect:/user/list";
     }
 
-
-
     @GetMapping("/update/{id}/")
-    public String getUser(@PathVariable("id") Integer id,Model model) {
-        if(id != null) {
+    public String getUser(@PathVariable("id") Integer id, Model model) {
+        if (id != null) {
             model.addAttribute("user", service.getUser(id));
+        } else {
         }
         return "user/update";
     }
 
-
     @PostMapping("/update/{id}/")
-    public String postUser(@Validated User user,BindingResult res,Model model) {
-        if(res.hasErrors()) {
+    public String postUser(@Validated User user, BindingResult res, Model model) {
+        if (res.hasErrors()) {
             model.addAttribute("user", user);
-            return getUser(null,model);
+            return getUser(null, model);
         }
         service.saveUser(user);
         return "redirect:/user/list";
